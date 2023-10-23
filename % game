@@ -1,0 +1,48 @@
+import tkinter
+RESULT = [ "돈키호테와 결혼하였다고 생각하는 수준",
+"돈키호테를 데이트 상대라고 보는 수준",
+"돈키호테를 사랑하는 수준",
+"돈키호테를 귀여워하는 수준",
+"돈키호테는 그저 LCCB부서에 한 수감자에 불가하다고 생각하는 수준",
+"돈키호테는 노랑대가리 꼬마라고 생각하는 수준",
+"돈키호테는 스토리 진행을 망치는 나쁜년 이라고 생각하는 수준",
+"돈키호테는 추방당해야 한다고 생각하는 수준"]
+
+
+
+def click_btn():
+    pts = 0
+    for i in range(7):
+        if bvar[i].get() == True:
+            pts = pts + 1
+    nekodo = int( 100 * pts/7)
+    text.delete("1.0",tkinter.END)
+    text.insert("1.0","<결과> \n 내용입니다." + str(nekodo) +  "%입니다. \n " + RESULT[pts])
+root = tkinter.Tk()
+root.title("돈키호테 애정도 판정 게임")
+root.resizable(False, False)
+canvas = tkinter.Canvas(root, width=800,height=600)
+canvas.pack()
+gazou = tkinter.PhotoImage(file="")
+canvas.create_image(400,300,image=gazou)
+button = tkinter.Text(width=40, height=5,font=("Times New Roman", 32),bg="lightgreen",command=click_btn)
+button.place(x=400,y=300)
+text = tkinter.Text(width=40,height=5,font=("Times New Roman",16))
+bvar = [None] *7
+cbtn = [None] * 7
+ITEM = [
+    "돈키호테 모든 인격이 있다.",
+    "돈키호테 모든 에고가 있다.",
+    "돈키호테가 매일 아침 인사를 해준다.",
+    "돈키호테를 짤이 갤러리에 많다.",
+    "돈키호테는 섹시하다고 생각한다.",
+    "돈키호테는 신이다.",
+    "돈키호테는 성능이 좋다."
+
+]
+for i in range(7):
+    bvar[i] = tkinter.BooleanVar()
+    bvar[i].set(False)
+    cbtn[i] = tkinter.Checkbutton(text=ITEM[i],font=("Times New Roman",12),variable=bvar[i],bg="#dfe")
+    cbtn[i].place(x=400, y=160 +40 * i)
+root.mainloop()
